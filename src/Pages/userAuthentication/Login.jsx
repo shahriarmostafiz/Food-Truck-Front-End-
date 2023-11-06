@@ -6,8 +6,8 @@ import bgImage from "../../../public/login.png"
 
 const Login = () => {
     const { login } = useAuth()
-    const location = useLocation()
-    const navigate = useNavigate()
+    // const location = useLocation()
+    // const navigate = useNavigate()
     const [showPass, setShowPass] = useState(false)
     const handleLogin = e => {
         e.preventDefault()

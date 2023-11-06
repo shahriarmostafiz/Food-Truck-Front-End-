@@ -1,13 +1,13 @@
 import { createContext, useEffect, useState } from 'react';
 import auth from '../Firebase/firebase.config';
-import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut } from 'firebase/auth';
-import useAxios from '../hooks/useAxios';
+import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut, updateProfile } from 'firebase/auth';
+// import useAxios from '../hooks/useAxios';
+import axios from 'axios';
 export const AuthContext = createContext(null)
 
 const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null)
     const [loading, setLoading] = useState(true)
-    const axiosSecure = useAxios()
     // creating user
     const signup = (email, pass) => {
         setLoading(true)
@@ -18,19 +18,21 @@ const AuthProvider = ({ children }) => {
         setLoading(true)
         return signInWithEmailAndPassword(auth, email, pass)
     }
+    // const axiosSecure = useAxios()
+
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, currentUser => {
             const userEmail = currentUser?.email || user?.email
             const loggedUser = { email: userEmail }
-            setUser[currentUser]
+            setUser(currentUser)
             setLoading(false)
             if (currentUser) {
-                axiosSecure.post("/jwt", loggedUser)
+                axios.post("http://localhost:5000/api/v1/jwt", loggedUser, { withCredentials: true })
                     .then(res => console.log(res.data))
                     .catch(err => console.log(err))
             }
             else {
-                axiosSecure.post("/logout", loggedUser)
+                axios.post("http://localhost:5000/api/v1/logout", loggedUser)
                     .then(res => { console.log(res.data) })
                     .catch(err => {
                         console.log(err)
@@ -40,14 +42,19 @@ const AuthProvider = ({ children }) => {
         return () => {
             return unsubscribe()
         }
-    }, [axiosSecure, user?.email])
+    }, [user?.email])
 
     // logout
     const logout = () => {
         return signOut(auth)
     }
+    const update = (name, photo) => {
+        return updateProfile(auth.currentUser, {
+            displayName: name, photoURL: photo
+        })
+    }
     // const auth = auth
-    const AuthValue = { user, loading, signup, login, logout }
+    const AuthValue = { user, loading, signup, login, logout, update }
 
     return (
         <AuthContext.Provider value={AuthValue}>

@@ -3,12 +3,19 @@ import { Link, NavLink } from "react-router-dom";
 import logo from "../../../public/Logo.png"
 import useAuth from "../../hooks/useAuth";
 const Nav = () => {
-    const { user } = useAuth()
+    const { user, logout } = useAuth()
+    // console.log("user in nav bar", user);
     const links = <>
         <li><NavLink to={"/"}>Home</NavLink></li>
         <li><NavLink to={"/allfoods"}>All Food</NavLink></li>
         <li><NavLink to={"/blog"}>Blog</NavLink></li>
     </>
+
+    const handleLogout = () => {
+        logout()
+            .then()
+            .catch()
+    }
     return (
         <div className="max-w-7xl mx-auto">
             <div className="navbar bg-base-100">
@@ -36,18 +43,18 @@ const Nav = () => {
                         user ? <div className="dropdown dropdown-end">
                             <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                                 <div className="w-10 rounded-full">
-                                    <img src={logo} alt="user image" />
+                                    <img src={user?.photoURL} alt="user image" />
                                 </div>
                             </label>
                             <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
                                 <li>
-                                    <a className="justify-between">
+                                    <Link className="justify-between">
                                         Profile
                                         <span className="badge">New</span>
-                                    </a>
+                                    </Link>
                                 </li>
-                                <li><a>Settings</a></li>
-                                <li><a>Logout</a></li>
+                                <li><Link>Settings</Link></li>
+                                <li><a onClick={handleLogout}>Logout</a></li>
                             </ul>
                         </div>
                             :
