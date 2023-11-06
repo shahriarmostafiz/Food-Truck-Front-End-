@@ -1,12 +1,12 @@
 
 import { Link, NavLink } from "react-router-dom";
-import logo from "../../../public/MainLogo.png"
+import logo from "../../../public/Logo.png"
 import useAuth from "../../hooks/useAuth";
 const Nav = () => {
     const { user } = useAuth()
     const links = <>
         <li><NavLink to={"/"}>Home</NavLink></li>
-        <li><NavLink to={"/allfood"}>All Food</NavLink></li>
+        <li><NavLink to={"/allfoods"}>All Food</NavLink></li>
         <li><NavLink to={"/blog"}>Blog</NavLink></li>
     </>
     return (

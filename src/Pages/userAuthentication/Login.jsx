@@ -47,6 +47,9 @@ const Login = () => {
 
                             </div>
                         </form>
+                        <div className='my-6'>
+                            <button>Google Login </button>
+                        </div>
 
                         <p className='max-w-sm text-center '>Don`t have an Account? <Link className="text-orange-500 font-bold" to={'/register'}>Sign up</Link></p>
 

@@ -2,14 +2,16 @@ import { useQuery } from "@tanstack/react-query";
 import Banner from "../../Components/Banner/Banner";
 import useAxios from "../../hooks/useAxios";
 import TopFood from "./topFood";
+import { Link } from "react-router-dom";
 
 
 const Home = () => {
     const axiosSecure = useAxios()
+    const limit = 6;
     const { data: topFoods, isLoading, isError } = useQuery({
-        queryKey: ["foods"],
+        queryKey: ["topfoods", limit],
         queryFn: async () => {
-            const data = await axiosSecure.get("/allfoods?limit=6&sortField=order-quantity&sortOrder=desc")
+            const data = await axiosSecure.get(`/allfoods?limit=${limit}&sortField=order-quantity&sortOrder=desc`)
             return data.data
         }
     })
@@ -29,7 +31,11 @@ const Home = () => {
                             topFoods?.map(topFood => <TopFood key={topFood._id} topFood={topFood}></TopFood>)
 
                         }
+
                     </div>
+                </div>
+                <div className="text-center my-5">
+                    <Link to={"/allfoods"} className="btn btn-error normal-case text-white"> Show All</Link >
                 </div>
             </div>
         </div>
