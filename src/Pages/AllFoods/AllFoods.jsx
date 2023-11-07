@@ -3,6 +3,7 @@ import useAxios from '../../hooks/useAxios';
 import { useQuery } from '@tanstack/react-query';
 import FoodCard from './FoodCard';
 import { useLoaderData } from 'react-router-dom';
+import Loading from '../../Components/Loading_Component/Loading';
 
 const AllFoods = () => {
     const axiosSecure = useAxios()
@@ -34,7 +35,7 @@ const AllFoods = () => {
         }
     })
     if (isLoading) {
-        return <h1>loading....</h1>
+        return <Loading></Loading>
     }
     if (isError) { return <h1>Something went wrong</h1> }
     // console.log(allFoods?.length);

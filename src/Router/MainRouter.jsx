@@ -7,6 +7,8 @@ import Register from '../Pages/userAuthentication/Register';
 import AllFoods from '../Pages/AllFoods/AllFoods';
 // import { Axios } from 'axios';
 import SingleFood from '../Pages/SingleFood/SingleFood';
+import Purchase from '../Pages/Purchase/Purchase';
+import PriveRoute from './PriveRoute';
 
 const MainRouter = createBrowserRouter([{
     path: "/",
@@ -28,6 +30,12 @@ const MainRouter = createBrowserRouter([{
     }, {
         path: "/details/:id",
         element: <SingleFood></SingleFood>
+    },
+    {
+        path: "/purchase/:id",
+        element: <PriveRoute>
+            <Purchase></Purchase>
+        </PriveRoute>
     }]
 
 }])

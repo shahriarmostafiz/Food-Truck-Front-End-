@@ -3,6 +3,7 @@ import Banner from "../../Components/Banner/Banner";
 import useAxios from "../../hooks/useAxios";
 import TopFood from "./topFood";
 import { Link } from "react-router-dom";
+import Faq from "../../Components/FAQ/Faq";
 
 
 const Home = () => {
@@ -38,6 +39,7 @@ const Home = () => {
                     <Link to={"/allfoods"} className="btn btn-error normal-case text-white"> Show All</Link >
                 </div>
             </div>
+            <Faq></Faq>
         </div>
     );
 };
