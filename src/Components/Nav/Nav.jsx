@@ -53,7 +53,7 @@ const Nav = () => {
                                         <span className="badge">New</span>
                                     </Link>
                                 </li>
-                                <li><Link>Settings</Link></li>
+                                <li><Link to={"/mypurchase"}>My Orders</Link></li>
                                 <li><a onClick={handleLogout}>Logout</a></li>
                             </ul>
                         </div>

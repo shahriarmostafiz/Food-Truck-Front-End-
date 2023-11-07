@@ -5,14 +5,13 @@ import TopFood from "./topFood";
 import { Link } from "react-router-dom";
 import Faq from "../../Components/FAQ/Faq";
 
-
 const Home = () => {
     const axiosSecure = useAxios()
     const limit = 6;
     const { data: topFoods, isLoading, isError } = useQuery({
         queryKey: ["topfoods", limit],
         queryFn: async () => {
-            const data = await axiosSecure.get(`/allfoods?limit=${limit}&sortField=order-quantity&sortOrder=desc`)
+            const data = await axiosSecure.get(`/allfoods?limit=${limit}&sortField=order_quantity&sortOrder=desc`)
             return data.data
         }
     })

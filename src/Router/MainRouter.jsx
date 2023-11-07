@@ -9,6 +9,8 @@ import AllFoods from '../Pages/AllFoods/AllFoods';
 import SingleFood from '../Pages/SingleFood/SingleFood';
 import Purchase from '../Pages/Purchase/Purchase';
 import PriveRoute from './PriveRoute';
+import MyPurchase from '../Pages/MyPurchase/MyPurchase';
+import AddProduct from '../Pages/AddProduct/AddProduct';
 
 const MainRouter = createBrowserRouter([{
     path: "/",
@@ -36,6 +38,12 @@ const MainRouter = createBrowserRouter([{
         element: <PriveRoute>
             <Purchase></Purchase>
         </PriveRoute>
+    }, {
+        path: "/mypurchase",
+        element: <PriveRoute><MyPurchase></MyPurchase></PriveRoute>
+    }, {
+        path: "/addproduct",
+        element: <PriveRoute><AddProduct></AddProduct></PriveRoute>
     }]
 
 }])

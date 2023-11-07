@@ -3,11 +3,13 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
 import bgImage from "../../../public/login.png"
 import { FcGoogle } from 'react-icons/fc';
+import useAxios from '../../hooks/useAxios';
 
 // FcGoogle 
 
 const Register = () => {
     const { signup, logout, update } = useAuth()
+    const axiosSecure = useAxios()
     // const location = useLocation()
     const navigate = useNavigate()
     const [showPass, setShowPass] = useState(false)
@@ -18,11 +20,18 @@ const Register = () => {
         const name = form.name.value
         const image = form.image.value
         const password = form.password.value
+        const thisUser = { email, name, image, password }
         console.log(email, password);
         signup(email, password)
             .then(res => {
                 console.log(res.user)
                 update(name, image)
+                axiosSecure.post("/users", thisUser)
+                    .then(res => {
+                        const data = res.data
+                        // if(data.ac)
+                        console.log(data)
+                    })
                 logout()
                     .then()
                     .catch()

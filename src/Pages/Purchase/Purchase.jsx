@@ -4,27 +4,38 @@ import { useParams } from 'react-router-dom';
 import useAxios from '../../hooks/useAxios';
 import useAuth from '../../hooks/useAuth';
 import Loading from '../../Components/Loading_Component/Loading';
+import axios from 'axios';
+import { toast, ToastContainer } from 'react-toastify';
+
+// import { , toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import OrderProcess from '../../Components/OrderProcess/OrderProcess';
 
 const Purchase = () => {
     const { id } = useParams()
     const { user } = useAuth()
+    // const [myquant]
+    const [fetchData, setFetchData] = useState(0)
     // const axiosSecure = useAxios()
     const [orderError, setError] = useState('')
     // console.log(user);
     const axiosSecure = useAxios()
     const { data: product, isLoading, isError } = useQuery({
-        queryKey: ["product", id],
+        queryKey: ["product", id, fetchData],
         queryFn: async () => {
-            const data = await axiosSecure(`/food/${id}`)
+            const data = await axiosSecure.get(`/food/${id}`)
             return data.data
         }
     })
     if (isLoading) { return <Loading></Loading> }
     if (isError) { return <h1>something went wrong </h1> }
-    console.log(Object.keys(product));
+    // if(isLoading &fetchData){
+    //     return <OrderProcess></OrderProcess>
+    // }
+    // console.log(Object.keys(product));
     const { _id, food_name, image, category, price, quantity, chef, order_quantity, chef_email } = product
-    console.log(chef, chef_email);
-    console.log("availabe", quantity);
+    // console.log(chef, chef_email);
+    // console.log("availabe", quantity);
     const handlePurchase = e => {
         e.preventDefault()
         const form = e.target
@@ -42,15 +53,52 @@ const Purchase = () => {
             return setError("you cant Buy your own products")
         }
         setError(null)
+        const newQuantity = quantity - orderingQuantity
+        const newOrder_quantity = order_quantity + orderingQuantity
         const data = {
             food,
             name,
             orderingQuantity,
             email,
             date,
-            price
+            price,
+            product_id: _id,
+            image,
+            chef,
+            newQuantity,
+            newOrder_quantity
         }
-        console.log(data);
+        // const newQuantity = quantity - orderingQuantity
+        // const newOrder_quantity = order_quantity + orderingQuantity
+        console.log("previously available", quantity)
+        console.log("previous order total", order_quantity);
+
+        console.log("now available", newQuantity);
+        console.log("new order total", newOrder_quantity);
+        const updateDB = {
+            order_quantity: newOrder_quantity,
+            quantity: newQuantity
+        }
+        console.log(updateDB);
+        axiosSecure.post("/orders", data)
+            .then(res => {
+                console.log(res.data)
+                if (res.data.insertedId) {
+                    axiosSecure.put(`foods/${_id}`, updateDB)
+                        .then(res => {
+                            console.log(res.data)
+                            // if(res.data)
+                            if (res.data.modifiedCount > 0) {
+                                setFetchData(() => fetchData + 1)
+                                return toast.success("purchase completed")
+                            }
+                        })
+                        .catch(err => {
+                            console.log(err)
+                        })
+                }
+            })
+            .catch(err => console.log(err))
 
     }
     return (
@@ -107,7 +155,7 @@ const Purchase = () => {
                     <button type='submit' className='btn bg-red-600 text-white outline-none border-none hover:bg-red-400 btn-wide'>Purchase</button>
                 </div>
             </form>
-
+            <ToastContainer />
         </div>
     );
 };
