@@ -2,12 +2,14 @@ import React, { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
 import bgImage from "../../../public/login.png"
+import { FcGoogle } from 'react-icons/fc';
+import { toast } from 'react-toastify';
 
 
 const Login = () => {
-    const { login } = useAuth()
-    // const location = useLocation()
-    // const navigate = useNavigate()
+    const { login, googleLogin } = useAuth()
+    const location = useLocation()
+    const navigate = useNavigate()
     const [showPass, setShowPass] = useState(false)
     const handleLogin = e => {
         e.preventDefault()
@@ -20,6 +22,17 @@ const Login = () => {
                 console.log(res.user)
             })
             .catch(err => console.log(err))
+    }
+    const googleSignup = () => {
+        googleLogin()
+            .then(() => {
+                toast.success('Signed Up ')
+                navigate(location?.state ? location.state : '/')
+            })
+            .catch(err => {
+                console.log(err.message);
+            })
+
     }
     return (
         <div>
@@ -47,12 +60,16 @@ const Login = () => {
 
                             </div>
                         </form>
-                        <div className='my-6'>
+                        {/* <div className='my-6'>
                             <button>Google Login </button>
+                        </div> */}
+                        <div className='w-full px-8 pb-4 space-y-4'>
+                            <div className='w-full max-w-sm text-center  space-y-4'>
+                                <h1>or</h1>
+                                <button onClick={googleSignup} className='btn btn-wide'>Login  with <FcGoogle />  </button>
+                            </div>
+                            <p className='max-w-sm text-center '>Don`t have an Account? <Link className="text-orange-500 font-bold" to={'/register'}>Sign up</Link></p>
                         </div>
-
-                        <p className='max-w-sm text-center '>Don`t have an Account? <Link className="text-orange-500 font-bold" to={'/register'}>Sign up</Link></p>
-
                     </div>
 
                 </div>

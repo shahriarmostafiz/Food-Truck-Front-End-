@@ -4,13 +4,14 @@ import useAuth from '../../hooks/useAuth';
 import bgImage from "../../../public/login.png"
 import { FcGoogle } from 'react-icons/fc';
 import useAxios from '../../hooks/useAxios';
+import { toast } from 'react-toastify';
 
 // FcGoogle 
 
 const Register = () => {
-    const { signup, logout, update } = useAuth()
+    const { signup, logout, update, googleLogin } = useAuth()
     const axiosSecure = useAxios()
-    // const location = useLocation()
+    const location = useLocation()
     const navigate = useNavigate()
     const [showPass, setShowPass] = useState(false)
     const handleRegister = e => {
@@ -39,7 +40,17 @@ const Register = () => {
             })
             .catch(err => { console.log(err) })
     }
+    const googleSignup = () => {
+        googleLogin()
+            .then(() => {
+                toast.success('Signed Up ')
+                navigate(location?.state ? location.state : '/')
+            })
+            .catch(err => {
+                console.log(err.message);
+            })
 
+    }
     return (
         <div className='my-6'>
             <div className='md:flex justify-between items-center bg-[url("https://i.ibb.co/m8gh9GK/Colored-Shapes.png")] bg-cover bg-center'>
@@ -76,7 +87,7 @@ const Register = () => {
                         <div className='w-full      px-8   pb-4 space-y-4'>
                             <div className='w-full max-w-sm text-center  space-y-4'>
                                 <h1>or</h1>
-                                <button className='btn btn-wide'>Sign Up with <FcGoogle />  </button>
+                                <button onClick={googleSignup} className='btn btn-wide'>Sign Up with <FcGoogle />  </button>
                             </div>
 
                             <p className='max-w-sm text-center '>Already have an Account? <Link className="text-red-500 font-bold" to={'/login'}>Login </Link></p>

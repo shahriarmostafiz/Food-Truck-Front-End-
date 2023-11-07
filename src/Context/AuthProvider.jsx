@@ -1,6 +1,6 @@
 import { createContext, useEffect, useState } from 'react';
 import auth from '../Firebase/firebase.config';
-import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut, updateProfile } from 'firebase/auth';
+import { GoogleAuthProvider, createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from 'firebase/auth';
 // import useAxios from '../hooks/useAxios';
 import axios from 'axios';
 export const AuthContext = createContext(null)
@@ -9,6 +9,7 @@ const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null)
     const [loading, setLoading] = useState(true)
     // creating user
+    const googleProvider = new GoogleAuthProvider();
     const signup = (email, pass) => {
         setLoading(true)
         return createUserWithEmailAndPassword(auth, email, pass)
@@ -17,6 +18,10 @@ const AuthProvider = ({ children }) => {
     const login = (email, pass) => {
         setLoading(true)
         return signInWithEmailAndPassword(auth, email, pass)
+    }
+    const googleLogin = () => {
+        setLoading(true)
+        return signInWithPopup(auth, googleProvider)
     }
     // const axiosSecure = useAxios()
 
@@ -54,7 +59,7 @@ const AuthProvider = ({ children }) => {
         })
     }
     // const auth = auth
-    const AuthValue = { user, loading, signup, login, logout, update }
+    const AuthValue = { user, loading, signup, login, logout, update, googleLogin }
 
     return (
         <AuthContext.Provider value={AuthValue}>

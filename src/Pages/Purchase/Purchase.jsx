@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import useAxios from '../../hooks/useAxios';
 import useAuth from '../../hooks/useAuth';
@@ -9,7 +9,7 @@ import { toast, ToastContainer } from 'react-toastify';
 
 // import { , toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import OrderProcess from '../../Components/OrderProcess/OrderProcess';
+// import OrderProcess from '../../Components/OrderProcess/OrderProcess';
 
 const Purchase = () => {
     const { id } = useParams()
