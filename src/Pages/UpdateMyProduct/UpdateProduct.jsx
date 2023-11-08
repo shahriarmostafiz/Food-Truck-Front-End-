@@ -37,7 +37,7 @@ const UpdateProduct = () => {
             quantity,
             chef,
             chef_email,
-            // last_Update
+
         }
         console.log(updatedDoc);
         axiosSecure.put(`userAddedFoods/${id}`, updatedDoc)

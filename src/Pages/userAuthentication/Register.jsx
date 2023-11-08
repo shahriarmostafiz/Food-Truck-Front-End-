@@ -1,8 +1,7 @@
 import { useState } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
 import bgImage from "../../../public/login.png"
-import { FcGoogle } from 'react-icons/fc';
 import useAxios from '../../hooks/useAxios';
 import { toast } from 'react-toastify';
 import { Helmet } from 'react-helmet-async';
