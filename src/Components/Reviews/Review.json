@@ -1,0 +1,58 @@
+[
+  {
+    "review_id": "review001",
+    "username": "Sarah Johnson",
+    "user_image": "https://i.ibb.co/r7Kn4t3/user1.jpg",
+    "review_rating": 4.5,
+    "review_text": "Food Truck is my top choice for an exquisite dining experience. The British cuisine is a delightful surprise, and their traditional Fish and Chips is a must-try. The Pizzas are equally fantastic."
+  },
+  {
+    "review_id": "review002",
+    "username": "Michael Smith",
+    "user_image": "https://i.ibb.co/bKfTx4K/user2.jpg",
+    "review_rating": 5.0,
+    "review_text": "I'm a regular at Food Truck, and it's become my go-to spot for British classics and mouthwatering Pizzas. The Shepherd's Pie is incredible, and their pizza selection offers something for everyone."
+  },
+  {
+    "review_id": "review003",
+    "username": "Emily Davis",
+    "user_image": "https://i.ibb.co/8x8ggKR/user3.jpg",
+    "review_rating": 4.0,
+    "review_text": "Food Truck has mastered the art of gourmet British dishes. The ambiance is charming, and their Sticky Toffee Pudding is a heavenly delight. Don't miss their Indian specialties!"
+  },
+  {
+    "review_id": "review004",
+    "username": "Olivia Brown",
+    "user_image": "https://i.ibb.co/tJgVzMg/user4.jpg",
+    "review_rating": 4.5,
+    "review_text": "Food Truck brings the flavors of Britain and India to Dhaka. The Chicken Tikka Masala is a standout, and their British desserts, like Eton Mess, are the perfect finish to a fantastic meal."
+  },
+  {
+    "review_id": "review005",
+    "username": "Matthew Wilson",
+    "user_image": "https://i.ibb.co/ZKDtGwD/user5.jpg",
+    "review_rating": 5.0,
+    "review_text": "Food Truck is a gem for those seeking a culinary journey. The Beef Wellington is my all-time favorite, and their range of wood-fired Pizzas is simply superb. An ideal spot for diverse tastes."
+  },
+  {
+    "review_id": "review006",
+    "username": "Hannah Jones",
+    "user_image": "https://i.ibb.co/Hg7GQd3/user6.jpg",
+    "review_rating": 4.0,
+    "review_text": "Celebrating at Food Truck is always a memorable experience. The Butter Chicken is divine, and their signature British dishes are truly gourmet. Impeccable service complements the exquisite cuisine."
+  },
+  {
+    "review_id": "review007",
+    "username": "David Miller",
+    "user_image": "https://i.ibb.co/GVBXGDt/user7.jpg",
+    "review_rating": 4.2,
+    "review_text": "Indulging in Food Truck's British desserts is a heavenly experience. Their Apple Crumble is a delight, and the Tandoori Pizzas offer a unique fusion of flavors. The perfect blend of sweet and savory."
+  },
+  {
+    "review_id": "review008",
+    "username": "SophiaWilson",
+    "user_image": "https://i.ibb.co/stbDRrz/user8.jpg",
+    "review_rating": 4.8,
+    "review_text": "Food Truck's commitment to quality is evident in every dish. Their British and Indian fusion cuisine is exceptional. The Beef Stroganoff is a delightful surprise, and the Indian offerings are authentic and delicious."
+  }
+]

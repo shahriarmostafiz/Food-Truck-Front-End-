@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import Faq from "../../Components/FAQ/Faq";
 import Title from "../../Components/Title/Title";
 import { MdOutlineRestaurantMenu } from 'react-icons/md';
+import Review from "../../Components/Reviews/Review";
 
 // MdOutlineRestaurantMenu
 
@@ -44,6 +45,8 @@ const Home = () => {
                     <Link to={"/allfoods"} className="btn bg-red-500 outline-none hover:bg-red-400 normal-case text-white"> See Menu <MdOutlineRestaurantMenu /></Link >
                 </div>
             </div>
+
+            <Review></Review>
             <Faq></Faq>
         </div>
     );
