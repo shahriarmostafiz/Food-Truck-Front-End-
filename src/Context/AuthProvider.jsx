@@ -37,7 +37,7 @@ const AuthProvider = ({ children }) => {
                     .catch(err => console.log(err))
             }
             else {
-                axios.post("https://food-truck-server.vercel.app/api/v1/logout", loggedUser)
+                axios.post("https://food-truck-server.vercel.app/api/v1/logout", loggedUser, { withCredentials: true })
                     .then(res => { console.log(res.data) })
                     .catch(err => {
                         console.log(err)
