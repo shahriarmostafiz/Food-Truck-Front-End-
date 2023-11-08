@@ -44,7 +44,7 @@ const UpdateProduct = () => {
                 console.log(res.data);
                 if (res.data.modifiedCount > 0) {
                     // setFetchData(() => fetchData + 1)
-                    return toast.success("purchase completed")
+                    return toast.success("Product Updated")
                 }
             }
             )

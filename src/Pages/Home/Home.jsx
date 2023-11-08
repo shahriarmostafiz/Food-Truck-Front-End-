@@ -4,6 +4,10 @@ import useAxios from "../../hooks/useAxios";
 import TopFood from "./topFood";
 import { Link } from "react-router-dom";
 import Faq from "../../Components/FAQ/Faq";
+import Title from "../../Components/Title/Title";
+import { MdOutlineRestaurantMenu } from 'react-icons/md';
+
+// MdOutlineRestaurantMenu
 
 const Home = () => {
     const axiosSecure = useAxios()
@@ -24,9 +28,11 @@ const Home = () => {
         <div>
             <Banner></Banner>
             <div>
-                <h1>Top Selling Products </h1>
+                <div>
+                    <Title heading={"Top Selling  "} subHeading={"Discover Our Most Popular Items"}></Title>
+                </div>
                 <div className="flex justify-center">
-                    <div className="grid grid-cols-3 gap-5 ">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 ">
                         {
                             topFoods?.map(topFood => <TopFood key={topFood._id} topFood={topFood}></TopFood>)
 
@@ -35,7 +41,7 @@ const Home = () => {
                     </div>
                 </div>
                 <div className="text-center my-5">
-                    <Link to={"/allfoods"} className="btn btn-error normal-case text-white"> Show All</Link >
+                    <Link to={"/allfoods"} className="btn bg-red-500 outline-none hover:bg-red-400 normal-case text-white"> See Menu <MdOutlineRestaurantMenu /></Link >
                 </div>
             </div>
             <Faq></Faq>
