@@ -12,6 +12,7 @@ import PriveRoute from './PriveRoute';
 import MyPurchase from '../Pages/MyPurchase/MyPurchase';
 import AddProduct from '../Pages/AddProduct/AddProduct';
 import MyAdded from '../Pages/MyAddedProduct/MyAdded';
+import UpdateProduct from '../Pages/UpdateMyProduct/UpdateProduct';
 
 const MainRouter = createBrowserRouter([{
     path: "/",
@@ -48,6 +49,9 @@ const MainRouter = createBrowserRouter([{
     }, {
         path: "/myadded",
         element: <PriveRoute><MyAdded></MyAdded></PriveRoute>
+    }, {
+        path: "/update/:id",
+        element: <PriveRoute><UpdateProduct></UpdateProduct></PriveRoute>
     }]
 
 }])

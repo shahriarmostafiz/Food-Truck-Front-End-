@@ -54,6 +54,7 @@ const Nav = () => {
                                     </Link>
                                 </li>
                                 <li><Link to={"/mypurchase"}>My Orders</Link></li>
+                                <li><Link to={"/myadded"}>My Added Products </Link></li>
                                 <li><Link to={"/addproduct"}>Add Product </Link></li>
                                 <li><a onClick={handleLogout}>Logout</a></li>
                             </ul>
