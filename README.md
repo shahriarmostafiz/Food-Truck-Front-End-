@@ -9,4 +9,4 @@
 - Implementation of Spinner Gif when Data is in loading state
 -
 
-# Live Link : https://food-truck-7b431.web.app/
+# Live Link : https://foodtruckbyshahriarmostafiz.surge.sh/

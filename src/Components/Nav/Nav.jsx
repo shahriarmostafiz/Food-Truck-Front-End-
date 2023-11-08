@@ -3,6 +3,7 @@ import { Link, NavLink } from "react-router-dom";
 import logo from "../../../public/Logo.png"
 import useAuth from "../../hooks/useAuth";
 import auth from "../../Firebase/firebase.config";
+import { toast } from "react-toastify";
 const Nav = () => {
     const { user, logout } = useAuth()
     const currentUser = auth.currentUser
@@ -15,7 +16,9 @@ const Nav = () => {
 
     const handleLogout = () => {
         logout()
-            .then()
+            .then(() => {
+                return toast.error("logged out")
+            })
             .catch()
     }
     return (
