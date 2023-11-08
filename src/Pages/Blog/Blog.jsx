@@ -1,8 +1,12 @@
 import React from 'react';
+import { Helmet } from 'react-helmet-async';
 
 const Blog = () => {
     return (
         <div className='max-w-7xl mx-auto my-6'>
+            <Helmet>
+                <title>Blog Page  </title>
+            </Helmet>
             <ol className='list-decimal space-y-5'>
                 <li>
                     <p className='font-bold'>What is One way data binding? </p>
