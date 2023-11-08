@@ -36,7 +36,7 @@ const MainRouter = createBrowserRouter([{
     }, {
         path: "/allfoods",
         element: <AllFoods></AllFoods>,
-        loader: () => fetch("http://localhost:5000/api/v1/allfoodcount")
+        loader: () => fetch("https://food-truck-server.vercel.app/api/v1/allfoodcount")
     }, {
         path: "/details/:id",
         element: <SingleFood></SingleFood>

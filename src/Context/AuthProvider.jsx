@@ -32,12 +32,12 @@ const AuthProvider = ({ children }) => {
             setUser(currentUser)
             setLoading(false)
             if (currentUser) {
-                axios.post("http://localhost:5000/api/v1/jwt", loggedUser, { withCredentials: true })
+                axios.post("https://food-truck-server.vercel.app/api/v1/jwt", loggedUser, { withCredentials: true })
                     .then(res => console.log(res.data))
                     .catch(err => console.log(err))
             }
             else {
-                axios.post("http://localhost:5000/api/v1/logout", loggedUser)
+                axios.post("https://food-truck-server.vercel.app/api/v1/logout", loggedUser)
                     .then(res => { console.log(res.data) })
                     .catch(err => {
                         console.log(err)

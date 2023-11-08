@@ -10,9 +10,8 @@ import { Helmet } from 'react-helmet-async';
 // FcGoogle 
 
 const Register = () => {
-    const { signup, logout, update, googleLogin } = useAuth()
+    const { signup, logout, update } = useAuth()
     const axiosSecure = useAxios()
-    const location = useLocation()
     const navigate = useNavigate()
     const [showPass, setShowPass] = useState(false)
     const handleRegister = e => {
@@ -23,7 +22,7 @@ const Register = () => {
         const image = form.image.value
         const password = form.password.value
         const thisUser = { email, name, image, password }
-        console.log(email, password);
+        // console.log(email, password);
         signup(email, password)
             .then(res => {
                 console.log(res.user)
@@ -31,8 +30,11 @@ const Register = () => {
                 axiosSecure.post("/users", thisUser)
                     .then(res => {
                         const data = res.data
-                        // if(data.ac)
                         console.log(data)
+                        // if(data.insert)
+                        if (data.acknowledged) {
+                            toast.success('Registration completed, Login to continue')
+                        }
                     })
                 logout()
                     .then()
@@ -41,17 +43,7 @@ const Register = () => {
             })
             .catch(err => { console.log(err) })
     }
-    const googleSignup = () => {
-        googleLogin()
-            .then(() => {
-                toast.success('Signed Up with google ')
-                navigate(location?.state ? location.state : '/')
-            })
-            .catch(err => {
-                console.log(err.message);
-            })
 
-    }
     return (
         <div className='my-6'>
             <Helmet>
@@ -91,11 +83,6 @@ const Register = () => {
                             </div>
                         </form>
                         <div className='w-full      px-8   pb-4 space-y-4'>
-                            <div className='w-full max-w-sm text-center  space-y-4'>
-                                <h1>or</h1>
-                                <button onClick={googleSignup} className='btn btn-wide'>Sign Up with <FcGoogle />  </button>
-                            </div>
-
                             <p className='max-w-sm text-center '>Already have an Account? <Link className="text-red-500 font-bold" to={'/login'}>Login </Link></p>
                         </div>
 
