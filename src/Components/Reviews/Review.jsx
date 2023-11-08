@@ -16,12 +16,14 @@ const Review = () => {
     })
     console.log("reviews", reviews);
     return (
-        <div>
+        <div className='max-w-7xl mx-auto'>
             <Title heading={"Testimonials"} subHeading={"Discover What Our Guests Have to Say"}></Title>
-            <div className=''>
-                {
-                    reviews?.map(review => <ReviewCard key={review._id} review={review}></ReviewCard>)
-                }
+            <div className="flex justify-center">
+                <div className=' grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 '>
+                    {
+                        reviews?.slice(0, 3).map(review => <ReviewCard key={review._id} review={review}></ReviewCard>)
+                    }
+                </div>
             </div>
 
         </div>
