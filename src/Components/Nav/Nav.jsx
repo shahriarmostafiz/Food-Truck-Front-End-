@@ -42,22 +42,28 @@ const Nav = () => {
                 </div>
                 <div className="navbar-end ">
                     {
-                        user ? <div className="dropdown dropdown-end">
-                            <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-                                <div className="w-10 rounded-full">
-                                    <img src={currentUser?.photoURL} alt="user image" />
-                                </div>
-                            </label>
-                            <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
+                        user ?
+                            <div className="flex items-center gap-1">
+                                <div className="dropdown dropdown-end">
+                                    <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+                                        <div className="w-10 rounded-full">
+                                            <img src={currentUser?.photoURL} alt="user image" />
+                                        </div>
+                                    </label>
+                                    <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
 
-                                <li><Link to={"/mypurchase"}>My Orders</Link></li>
-                                <li><Link to={"/myadded"}>My Added Products </Link></li>
-                                <li><Link to={"/addproduct"}>Add Product </Link></li>
-                                <li><a onClick={handleLogout}>Logout</a></li>
-                            </ul>
-                        </div>
+                                        <li><Link to={"/mypurchase"}>My Orders</Link></li>
+                                        <li><Link to={"/myadded"}>My Added Products </Link></li>
+                                        <li><Link to={"/addproduct"}>Add Product </Link></li>
+
+                                    </ul>
+                                </div>
+                                <div>
+                                    <button className="btn btn-sm bg-red-600 text-white outline-none hover:bg-red-400" onClick={handleLogout}>Logout</button>
+                                </div>
+                            </div>
                             :
-                            <Link to={"/login"} className="btn btn-error">Log In </Link>
+                            <Link to={"/login"} className="btn bg-red-600 text-white outline-none hover:bg-red-400 lg:px-8 ">Log In </Link>
                     }
 
                 </div>

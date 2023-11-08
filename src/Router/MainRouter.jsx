@@ -13,13 +13,19 @@ import MyPurchase from '../Pages/MyPurchase/MyPurchase';
 import AddProduct from '../Pages/AddProduct/AddProduct';
 import MyAdded from '../Pages/MyAddedProduct/MyAdded';
 import UpdateProduct from '../Pages/UpdateMyProduct/UpdateProduct';
+import ErrorPage from '../Pages/ErrorPage/ErrorPage';
+import Blog from '../Pages/Blog/Blog';
 
 const MainRouter = createBrowserRouter([{
     path: "/",
     element: <MainLayout></MainLayout>,
+    errorElement: <ErrorPage></ErrorPage>,
     children: [{
         path: "/",
         element: <Home></Home>
+    }, {
+        path: "/blog",
+        element: <Blog></Blog>
     }, {
         path: "/login",
         element: <Login></Login>
