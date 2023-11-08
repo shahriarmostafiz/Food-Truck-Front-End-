@@ -33,7 +33,7 @@ const OrderCard = ({ order, deleteData, setDeleteData }) => {
                     .then(res => {
                         console.log(res.data)
                         if (res.data.deletedCount > 0) {
-                            axiosSecure.put(`/foods/${product_id}`, updateDB)
+                            axiosSecure.patch(`/foods/${product_id}`, updateDB)
                                 .then(res => {
                                     console.log(res.data)
                                     // if(res.data)

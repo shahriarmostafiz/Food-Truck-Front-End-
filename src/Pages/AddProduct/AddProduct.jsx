@@ -33,16 +33,17 @@ const AddProduct = () => {
             quantity,
             chef,
             chef_email,
-            order_quantity: 0
+            order_quantity: 0,
+            added_Time: Date.now()
         }
         console.log(productData);
-        axiosSecure.post("/foods", productData)
-            .then(res => {
-                console.log(res.data);
-            })
-            .catch(err => {
-                console.log(err.message);
-            })
+        // axiosSecure.post("/foods", productData)
+        //     .then(res => {
+        //         console.log(res.data);
+        //     })
+        //     .catch(err => {
+        //         console.log(err.message);
+        //     })
     }
     return (
         <div className="max-w-7xl mx-auto">

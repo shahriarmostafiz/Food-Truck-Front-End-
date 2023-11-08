@@ -11,6 +11,7 @@ import Purchase from '../Pages/Purchase/Purchase';
 import PriveRoute from './PriveRoute';
 import MyPurchase from '../Pages/MyPurchase/MyPurchase';
 import AddProduct from '../Pages/AddProduct/AddProduct';
+import MyAdded from '../Pages/MyAddedProduct/MyAdded';
 
 const MainRouter = createBrowserRouter([{
     path: "/",
@@ -44,6 +45,9 @@ const MainRouter = createBrowserRouter([{
     }, {
         path: "/addproduct",
         element: <PriveRoute><AddProduct></AddProduct></PriveRoute>
+    }, {
+        path: "/myadded",
+        element: <PriveRoute><MyAdded></MyAdded></PriveRoute>
     }]
 
 }])
