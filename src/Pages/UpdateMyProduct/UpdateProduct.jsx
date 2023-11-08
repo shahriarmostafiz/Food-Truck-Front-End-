@@ -5,18 +5,21 @@ import { useQuery } from '@tanstack/react-query';
 import useAuth from '../../hooks/useAuth';
 import { ToastContainer, toast } from 'react-toastify';
 import { Helmet } from 'react-helmet-async';
+import Loading from '../../Components/Loading_Component/Loading';
 
 const UpdateProduct = () => {
     const { id } = useParams()
     const { user } = useAuth()
     const axiosSecure = useAxios()
-    const { data: thisProduct } = useQuery({
+    const { data: thisProduct, isLoading, isError } = useQuery({
         queryKey: ["update"],
         queryFn: async () => {
             const data = await axiosSecure.get(`/food/${id}`)
             return data.data
         }
     })
+    if (isLoading) { return <Loading></Loading> }
+    if (isError) { return <h1>Something went Wrong </h1> }
     console.log(thisProduct);
     const handleUpate = e => {
         e.preventDefault()

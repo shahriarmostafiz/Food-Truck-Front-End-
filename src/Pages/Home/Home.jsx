@@ -8,6 +8,7 @@ import Title from "../../Components/Title/Title";
 import { MdOutlineRestaurantMenu } from 'react-icons/md';
 import Review from "../../Components/Reviews/Review";
 import { Helmet } from "react-helmet-async";
+import Loading from "../../Components/Loading_Component/Loading";
 
 // MdOutlineRestaurantMenu
 
@@ -21,7 +22,7 @@ const Home = () => {
             return data.data
         }
     })
-    if (isLoading) { return <h1>loading....</h1> }
+    if (isLoading) { return <Loading></Loading> }
     if (isError) { return <h1>Something went wrong</h1> }
 
     console.log(topFoods?.length);
