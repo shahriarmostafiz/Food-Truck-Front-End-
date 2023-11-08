@@ -9,6 +9,7 @@ import { toast, ToastContainer } from 'react-toastify';
 
 // import { , toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Helmet } from 'react-helmet-async';
 // import OrderProcess from '../../Components/OrderProcess/OrderProcess';
 
 const Purchase = () => {
@@ -43,10 +44,14 @@ const Purchase = () => {
         const name = form.name.value
         const orderingQuantity = Number(form.quantity.value)
         const email = form.email.value
-        const date = form.date.value
+        const date = Date.now()
         const price = form.price.value
+        // if(order_quantity<0){
+        //     return 
+        // }
         if (orderingQuantity > quantity) {
-            return setError("not enough stock")
+            toast.error("Not Enough Stock")
+            return setError("Not enough stock")
         }
         setError(null)
         if (email === chef_email) {
@@ -84,7 +89,7 @@ const Purchase = () => {
             .then(res => {
                 console.log(res.data)
                 if (res.data.insertedId) {
-                    axiosSecure.put(`foods/${_id}`, updateDB)
+                    axiosSecure.patch(`foods/${_id}`, updateDB)
                         .then(res => {
                             console.log(res.data)
                             // if(res.data)
@@ -103,58 +108,69 @@ const Purchase = () => {
     }
     return (
         <div className='max-w-7xl mx-auto'>
-            <form onSubmit={handlePurchase} className='w-full space-y-4 my-5'>
-                <div className=" flex flex-col md:flex-row gap-4">
-                    <div className="form-control  flex-1 ">
-                        <label className="label">
-                            <span className="label-text">Food Name: </span>
-                        </label>
-                        <input type="text" placeholder="Type here" defaultValue={food_name} name='food' className="input input-bordered input-error w-full  " />
-                    </div>
-                    <div className="form-control  flex-1 ">
-                        <label className="label">
-                            <span className="label-text">Price: </span>
-                        </label>
-                        <input type="text" placeholder="Price" defaultValue={price} name='price' className="input input-bordered input-error w-full  " />
-                    </div>
-                </div>
-                <div className=" flex flex-col md:flex-row gap-4">
-                    <div className="form-control  flex-1">
-                        <label className="label">
-                            <span className="label-text">Quantity </span>
-                        </label>
-                        <input type="text" placeholder="Type here" defaultValue={1} name='quantity' className="input input-bordered input-error w-full  " />
-                    </div>
-                    <div className="form-control  flex-1">
-                        <label className="label">
-                            <span className="label-text">Purchase Date  </span>
-                        </label>
-                        <input type="date" name='date' className="input input-bordered input-error w-full  " />
-                    </div>
-                </div>
-                <div className=" flex flex-col md:flex-row gap-4">
-                    <div className="form-control  flex-1">
-                        <label className="label">
-                            <span className="label-text">Name  </span>
-                        </label>
-                        <input type="text" placeholder="Type here" defaultValue={user?.displayName} disabled name='name' className="input input-bordered input-error w-full  " />
-                    </div>
-                    <div className="form-control  flex-1">
-                        <label className="label">
-                            <span className="label-text">Your Email  </span>
-                        </label>
-                        <input type="email" name='email' defaultValue={user?.email} disabled className="input input-bordered input-error w-full  " />
-                    </div>
-                </div>
+            <Helmet>
+                <title>
+                    Food Truck | Purchase
+                </title>
+            </Helmet>
 
-                {
-                    orderError ? <p className='text-red-500 font-bold text-center'>{orderError}</p> : ''
-                }
-
-                <div className='text-center'>
-                    <button type='submit' className='btn bg-red-600 text-white outline-none border-none hover:bg-red-400 btn-wide'>Purchase</button>
+            <div className='flex flex-col-reverse md:flex-row md:justify-between gap-6 my-4 lg:my-8'>
+                <div className='flex-1'>
+                    <img src={image} className='rounded-xl' alt="" />
                 </div>
-            </form>
+                <form onSubmit={handlePurchase} className=' flex-1 w-full space-y-4 my-5 shadow-xl px-8 py-6 rounded-xl'>
+                    <div className=" flex flex-col  gap-4">
+                        <div className="form-control  flex-1 ">
+                            <label className="label">
+                                <span className="label-text">Food Name: </span>
+                            </label>
+                            <input type="text" placeholder="Type here" defaultValue={food_name} disabled name='food' className="input input-bordered input-error w-full  " />
+                        </div>
+                        <div className="form-control  flex-1 ">
+                            <label className="label">
+                                <span className="label-text">Price: </span>
+                            </label>
+                            <input type="text" placeholder="Price" defaultValue={price} name='price' disabled className="input input-bordered input-error w-full  " />
+                        </div>
+                    </div>
+                    <div className=" flex flex-col  gap-4">
+                        <div className="form-control  flex-1">
+                            <label className="label">
+                                <span className="label-text">Quantity </span>
+                            </label>
+                            <input type="number" placeholder="Order Ammount" defaultValue={1} min={1} name='quantity' className="input input-bordered input-error w-full  " />
+                        </div>
+                        {/* <div className="form-control  flex-1">
+                            <label className="label">
+                                <span className="label-text">Purchase Date  </span>
+                            </label>
+                            <input type="date" name='date' className="input input-bordered input-error w-full  " />
+                        </div> */}
+                    </div>
+                    <div className=" flex flex-col  gap-4">
+                        <div className="form-control  flex-1">
+                            <label className="label">
+                                <span className="label-text">Name  </span>
+                            </label>
+                            <input type="text" placeholder="Type here" defaultValue={user?.displayName} disabled name='name' className="input input-bordered input-error w-full  " />
+                        </div>
+                        <div className="form-control  flex-1">
+                            <label className="label">
+                                <span className="label-text">Your Email  </span>
+                            </label>
+                            <input type="email" name='email' defaultValue={user?.email} disabled className="input input-bordered input-error w-full  " />
+                        </div>
+                    </div>
+
+                    {
+                        orderError ? <p className='text-red-500 font-bold text-center'>{orderError}</p> : ''
+                    }
+
+                    <div className='text-center'>
+                        <button type='submit' className='btn bg-red-600 text-white outline-none border-none hover:bg-red-400 btn-wide'>Purchase</button>
+                    </div>
+                </form>
+            </div>
             <ToastContainer />
         </div>
     );

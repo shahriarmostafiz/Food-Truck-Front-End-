@@ -5,11 +5,11 @@ import { GoogleAuthProvider, createUserWithEmailAndPassword, onAuthStateChanged,
 import axios from 'axios';
 export const AuthContext = createContext(null)
 
+const googleProvider = new GoogleAuthProvider();
 const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null)
     const [loading, setLoading] = useState(true)
     // creating user
-    const googleProvider = new GoogleAuthProvider();
     const signup = (email, pass) => {
         setLoading(true)
         return createUserWithEmailAndPassword(auth, email, pass)

@@ -5,6 +5,7 @@ import bgImage from "../../../public/login.png"
 import { FcGoogle } from 'react-icons/fc';
 import useAxios from '../../hooks/useAxios';
 import { toast } from 'react-toastify';
+import { Helmet } from 'react-helmet-async';
 
 // FcGoogle 
 
@@ -43,7 +44,7 @@ const Register = () => {
     const googleSignup = () => {
         googleLogin()
             .then(() => {
-                toast.success('Signed Up ')
+                toast.success('Signed Up with google ')
                 navigate(location?.state ? location.state : '/')
             })
             .catch(err => {
@@ -53,6 +54,11 @@ const Register = () => {
     }
     return (
         <div className='my-6'>
+            <Helmet>
+                <title>
+                    Register
+                </title>
+            </Helmet>
             <div className='md:flex justify-between items-center bg-[url("https://i.ibb.co/m8gh9GK/Colored-Shapes.png")] bg-cover bg-center'>
                 <div className='flex-1'>
                     <img src={bgImage} className='max-w-sm lg:max-w-lg' alt="" />

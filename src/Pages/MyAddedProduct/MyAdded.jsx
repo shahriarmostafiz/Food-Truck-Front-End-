@@ -3,6 +3,7 @@ import useAuth from "../../hooks/useAuth";
 import useAxios from "../../hooks/useAxios";
 import Loading from "../../Components/Loading_Component/Loading";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 const MyAdded = () => {
     const { user } = useAuth()
@@ -23,6 +24,11 @@ const MyAdded = () => {
     // }
     return (
         <div className="max-w-7xl mx-auto">
+            <Helmet>
+                <title>
+                    Food Truck | Added Products
+                </title>
+            </Helmet>
             <div className="overflow-x-auto">
                 <table className="table">
                     {/* head */}

@@ -5,6 +5,7 @@ import FoodCard from './FoodCard';
 import { useLoaderData } from 'react-router-dom';
 import Loading from '../../Components/Loading_Component/Loading';
 import Title from '../../Components/Title/Title';
+import { Helmet } from 'react-helmet-async';
 
 const AllFoods = () => {
     const axiosSecure = useAxios()
@@ -50,6 +51,11 @@ const AllFoods = () => {
     // console.log();
     return (
         <div className='max-w-7xl mx-auto'>
+            <Helmet>
+                <title>
+                    Food Truck  | All Foods
+                </title>
+            </Helmet>
             <Title heading={"Explore Our Culinary Delights"} subHeading={"An Exquisite Selection of Dishes to Satisfy Every Palate"}></Title>
 
             <div className='flex flex-col md:flex-row justify-around items-center gap-4  my-6'>

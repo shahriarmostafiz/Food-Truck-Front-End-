@@ -6,7 +6,7 @@ import Swal from 'sweetalert2'
 
 
 // AiFillDelete
-const OrderCard = ({ order, deleteData, setDeleteData }) => {
+const OrderCard = ({ order, orders, setOrder }) => {
     const axiosSecure = useAxios()
     const { product_id, image, food, price, _id, orderingQuantity, newQuantity,
         newOrder_quantity } = order
@@ -33,15 +33,14 @@ const OrderCard = ({ order, deleteData, setDeleteData }) => {
                     .then(res => {
                         console.log(res.data)
                         if (res.data.deletedCount > 0) {
+                            const remaining = orders?.filter(item => item._id !== _id)
+                            setOrder(remaining)
                             axiosSecure.patch(`/foods/${product_id}`, updateDB)
                                 .then(res => {
                                     console.log(res.data)
                                     // if(res.data)
                                     if (res.data.modifiedCount > 0) {
-                                        // setFetchData(() => fetchData + 1)
-                                        setDeleteData(() => { deleteData + 1 })
 
-                                        // return toast.error("Order cancelled ")
                                         Swal.fire({
                                             title: "Cancelled!",
                                             text: "Your Order has been Cancelled",
@@ -103,7 +102,7 @@ const OrderCard = ({ order, deleteData, setDeleteData }) => {
 export default OrderCard;
 OrderCard.propTypes = {
     order: PropTypes.object,
-    deleteData: PropTypes.number,
-    setDeleteData: PropTypes.func
+    orders: PropTypes.array,
+    setOrder: PropTypes.func
 
 }

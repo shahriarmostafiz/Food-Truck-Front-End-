@@ -2,8 +2,10 @@
 import { Link, NavLink } from "react-router-dom";
 import logo from "../../../public/Logo.png"
 import useAuth from "../../hooks/useAuth";
+import auth from "../../Firebase/firebase.config";
 const Nav = () => {
     const { user, logout } = useAuth()
+    const currentUser = auth.currentUser
     // console.log("user in nav bar", user);
     const links = <>
         <li><NavLink to={"/"}>Home</NavLink></li>
@@ -43,16 +45,11 @@ const Nav = () => {
                         user ? <div className="dropdown dropdown-end">
                             <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                                 <div className="w-10 rounded-full">
-                                    <img src={user?.photoURL} alt="user image" />
+                                    <img src={currentUser?.photoURL} alt="user image" />
                                 </div>
                             </label>
                             <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
-                                <li>
-                                    <Link className="justify-between">
-                                        Profile
-                                        <span className="badge">New</span>
-                                    </Link>
-                                </li>
+
                                 <li><Link to={"/mypurchase"}>My Orders</Link></li>
                                 <li><Link to={"/myadded"}>My Added Products </Link></li>
                                 <li><Link to={"/addproduct"}>Add Product </Link></li>

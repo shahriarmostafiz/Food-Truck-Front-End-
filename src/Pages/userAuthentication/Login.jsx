@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
 import bgImage from "../../../public/login.png"
 import { FcGoogle } from 'react-icons/fc';
 import { toast } from 'react-toastify';
+import { Helmet } from 'react-helmet-async';
 
 
 const Login = () => {
@@ -20,13 +21,15 @@ const Login = () => {
         login(email, password)
             .then(res => {
                 console.log(res.user)
+                toast.success('logged in')
+                navigate(location?.state ? location.state : "/")
             })
             .catch(err => console.log(err))
     }
     const googleSignup = () => {
         googleLogin()
             .then(() => {
-                toast.success('Signed Up ')
+                toast.success('Logged in ')
                 navigate(location?.state ? location.state : '/')
             })
             .catch(err => {
@@ -36,6 +39,11 @@ const Login = () => {
     }
     return (
         <div>
+            <Helmet>
+                <title>
+                    Login
+                </title>
+            </Helmet>
             <div className='md:flex justify-between items-center bg-[url("https://i.ibb.co/m8gh9GK/Colored-Shapes.png")] bg-cover bg-center'>
                 <div className='flex-1'>
                     <img src={bgImage} className='max-w-sm lg:max-w-lg' alt="" />

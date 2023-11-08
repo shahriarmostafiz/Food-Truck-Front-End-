@@ -2,6 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import { Link, useParams } from 'react-router-dom';
 import useAxios from '../../hooks/useAxios';
 import Loading from '../../Components/Loading_Component/Loading';
+import { Helmet } from 'react-helmet-async';
 
 const SingleFood = () => {
     const { id } = useParams()
@@ -20,6 +21,11 @@ const SingleFood = () => {
 
     return (
         <div className='max-w-7xl mx-auto my-10'>
+            <Helmet>
+                <title>
+                    Details
+                </title>
+            </Helmet>
             {/* details of product {id} */}
             <div className="flex flex-col md:flex-row">
                 <div className='flex-1 p-4'>

@@ -11,6 +11,7 @@
 import { ToastContainer, toast } from "react-toastify";
 import useAuth from "../../hooks/useAuth";
 import useAxios from "../../hooks/useAxios";
+import { Helmet } from "react-helmet-async";
 
 // description x
 const AddProduct = () => {
@@ -51,6 +52,11 @@ const AddProduct = () => {
     }
     return (
         <div className="max-w-7xl mx-auto">
+            <Helmet>
+                <title>
+                    Add Product
+                </title>
+            </Helmet>
             <form onSubmit={handleAddProduct} className="space-y-4 ">
                 <div className=" flex flex-col md:flex-row gap-4">
                     <div className="form-control  flex-1 ">

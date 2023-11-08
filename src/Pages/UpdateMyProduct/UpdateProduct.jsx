@@ -4,6 +4,7 @@ import useAxios from '../../hooks/useAxios';
 import { useQuery } from '@tanstack/react-query';
 import useAuth from '../../hooks/useAuth';
 import { ToastContainer, toast } from 'react-toastify';
+import { Helmet } from 'react-helmet-async';
 
 const UpdateProduct = () => {
     const { id } = useParams()
@@ -54,6 +55,11 @@ const UpdateProduct = () => {
     }
     return (
         <div className='max-w-7xl mx-auto my-5 lg:my-8'>
+            <Helmet>
+                <title>
+                    Update
+                </title>
+            </Helmet>
             <form onSubmit={handleUpate} className="space-y-4 ">
                 <div className=" flex flex-col md:flex-row gap-4">
                     <div className="form-control  flex-1 ">

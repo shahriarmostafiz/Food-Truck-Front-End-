@@ -7,6 +7,7 @@ import Faq from "../../Components/FAQ/Faq";
 import Title from "../../Components/Title/Title";
 import { MdOutlineRestaurantMenu } from 'react-icons/md';
 import Review from "../../Components/Reviews/Review";
+import { Helmet } from "react-helmet-async";
 
 // MdOutlineRestaurantMenu
 
@@ -27,6 +28,11 @@ const Home = () => {
     console.log(topFoods);
     return (
         <div>
+            <Helmet>
+                <title>
+                    Food Truck | Home
+                </title>
+            </Helmet>
             <Banner></Banner>
             <div>
                 <div>
