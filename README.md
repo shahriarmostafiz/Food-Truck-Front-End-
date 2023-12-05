@@ -7,7 +7,6 @@
 - Search Functionality in all Products
 - Firebase authentication
 - Implementation of Spinner Gif when Data is in loading state
--
 
 - [Live Link](https://foodtruckbyshahriarmostafiz.surge.sh/)
 
