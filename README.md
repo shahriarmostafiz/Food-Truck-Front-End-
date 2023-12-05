@@ -13,4 +13,4 @@
 
 # Server
 
--[Server Repository](https://github.com/shahriarmostafiz/Food-Truck-Server)
+- [Server Repository](https://github.com/shahriarmostafiz/Food-Truck-Server)
